@@ -1,0 +1,64 @@
+body {
+    min-width: 1229px;
+}
+
+header {
+    width: 80%;
+    min-width: 600px;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.titleTiles {
+    width: 80px;
+    transform: rotate(8deg)
+}
+
+
+/* Scrabble Board */
+#scrabbleBoard {
+    height: 80px;
+    width: 1200px;
+    display: flex;
+    margin: 70px auto;
+}
+
+.boardTile {
+    height: 78px;
+    width: 78px;
+    border: 1px solid black;
+}
+
+/* CSS Code for the tiles the player can currently choose from. */
+
+#tileHandContainer {
+    width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+#tileHolder {
+    width: 560px;
+}
+
+.ui-widget-content {
+    position: absolute;
+    top: 43px;
+    left: 30px;
+    border: none !important;
+}
+
+.draggable { 
+    width: 72px;
+    height: 78px;
+    border-radius: 6px;
+}
+
+.tiles {
+    width: 72px;
+    height: 78px;
+    border-radius: 6px;
+}

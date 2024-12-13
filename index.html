@@ -1,0 +1,64 @@
+<!--
+File: index.html
+Created by sejager
+This is the HTML page for a single line of scrabble game.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Single Row Scrabble</title>
+    <meta charset="utf-8">
+    <link href="scrabble.css" rel="stylesheet">
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>
+        <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_S.jpg">
+        <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_C.jpg">
+        <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_R.jpg">
+        <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_A.jpg">
+        <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_B.jpg">
+        <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_B.jpg">
+        <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_L.jpg">
+        <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_E.jpg">
+    </header>
+    <!-- The scrabble 'board' is displayed here. -->
+    <div id="scrabbleBoard">
+
+        <img id="tileOne" class="boardTile" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+        <img id="tileTwo" class="boardTile" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+        <img id="tileThree" class="boardTile doubleWord" src="./graphics_data/Board_Tiles/Board_Tile_Double_Word.png">
+        <img id="tileFour" class="boardTile" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+        <img id="tileFive" class="boardTile" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+        <img id="tileSix" class="boardTile" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+        <img id="tileSeven" class="boardTile doubleLetter" src="./graphics_data/Board_Tiles/Board_Tile_Double_Letter.png">
+        <img id="tileEight" class="boardTile" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+        <img id="tileNine" class="boardTile doubleLetter" src="./graphics_data/Board_Tiles/Board_Tile_Double_Letter.png">
+        <img id="tileTen" class="boardTile" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+        <img id="tileEleven" class="boardTile" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+        <img id="tileTwelve" class="boardTile" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+        <img id="tileThirteen" class="boardTile doubleWord" src="./graphics_data/Board_Tiles/Board_Tile_Double_Word.png">
+        <img id="tileFourteen" class="boardTile" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+        <img id="tileFifteen" class="boardTile" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+    </div>
+
+    <!-- The players tiles are displayed here. -->
+        <div id="tileHandContainer">
+            <img id="tileHolder" src="./graphics_data/scrabble-tile-holder-406774_640.png">
+
+            <div class="ui-widget-content draggable letterB">
+                <img class="tiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_B.jpg">
+            </div>
+            <div class="ui-widget-content draggable letterB">
+                <img class="tiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_B.jpg">
+            </div>
+        </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://releases.jquery.com/git/ui/jquery-ui-git.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+    <script src="scrabble.js"></script>
+</body>
+</html>
