@@ -4,10 +4,6 @@ Created by sejager
 This is the .css page for a single line of scrabble game.
 */
 
-body {
-    min-width: 1229px;
-}
-
 header {
     width: 80%;
     min-width: 600px;
@@ -21,7 +17,6 @@ header {
     width: 80px;
     transform: rotate(8deg)
 }
-
 
 /* Scrabble Board */
 #scrabbleBoard {
@@ -79,4 +74,9 @@ header {
     width: 72px;
     height: 78px;
     border-radius: 6px;
+}
+
+#buttonGroup {
+    margin-top: 20px;
+    text-align: center;
 }

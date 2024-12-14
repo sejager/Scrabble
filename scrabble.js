@@ -4,12 +4,6 @@ Created by sejager
 This is the .js page for a single line of scrabble game.
 */
 
-
-
-// make sure classes are only added if successfully moved
-
-
-
 // Variables used to track the pile and hand
 var ScrabbleTiles = [];
 var tilePile = [];
@@ -21,7 +15,7 @@ generatePile();
 
 $(document).ready(function () {
 
-    // Make objects draggable and return to origin if not placed on a droppable surface
+    // Make tiles draggable and return to origin if not placed on a droppable surface
     $('.draggable').draggable( {
         revert: 'invalid'
     });
@@ -33,6 +27,17 @@ $(document).ready(function () {
 
         // What happens when a tile is dropped
         drop: function(event, ui) {
+
+            // Change the class of the area it was on to mark it as empty
+            if ($(ui.draggable).parent().hasClass('boardSpace')) {
+                $(ui.draggable).parent().addClass('emptySpace');
+                $(ui.draggable).parent().removeClass('occupiedSpace');
+            }
+            else if ($(ui.draggable).parent().hasClass('tileHolderCell')) {
+                $(ui.draggable).parent().addClass('emptyCell');
+                $(ui.draggable).parent().removeClass('occupiedCell');
+            }
+            
             // Snap the tile into the cell
             var tilePos = $(this).position().left;
             $(ui.draggable).css({'top' : '', 'left' : '', 'position' : 'absolute', 'z-index' : '1'});
@@ -40,60 +45,57 @@ $(document).ready(function () {
             // Change classes
             $(this).addClass('occupiedCell');
             $(this).removeClass('emptyCell');
-        },
-
-        // What happens when a tile is removed
-        out: function(event, ui) {
-            $(this).removeClass('occupiedCell');
-            $(this).addClass('emptyCell');
         }
     })
 
-    // Make the board spaces droppable surfaces
+    // Make the board spaces droppable surfaces, similar to the above code
     $('.boardSpace').droppable( {
 
         tolerance: 'intersect',
 
         drop: function(event, ui) {
+            // Change former parent classes
+            if ($(ui.draggable).parent().hasClass('boardSpace')) {
+                $(ui.draggable).parent().addClass('emptySpace');
+                $(ui.draggable).parent().removeClass('occupiedSpace');
+            }
+            else if ($(ui.draggable).parent().hasClass('tileHolderCell')) {
+                $(ui.draggable).parent().addClass('emptyCell');
+                $(ui.draggable).parent().removeClass('occupiedCell');
+            }
+            // Snap the tile into the space
             $(ui.draggable).css({'top' : $(this).position().top - 1, 'left' : $(this).position().left + 2, 'position' : 'absolute', 'z-index' : '1'});
             $(this).append(ui.draggable);
+            // Change classes
             $(this).addClass('occupiedSpace');
             $(this).removeClass('emptySpace');
             // Check if it's a special board space
             if ($(this).is('.doubleLetter')) {
-                console.log('doubleLetter');
+                //console.log('doubleLetter');
             }
             else if ($(this).is('.doubleWord')) {
-                console.log('doubleWord');
+                //console.log('doubleWord');
             }
             // Thanks to https://stackoverflow.com/a/3239600 for getting attr
-            console.log($(this).attr('id'));
+            //console.log($(this).attr('id'));
             // Get what letter has just been dropped by extracting the class and removing the 'letter' part of the class name
             // Thanks to https://stackoverflow.com/a/52454460 for getting attr of dropped object
             // Thanks to https://stackoverflow.com/a/10343518 for getting specific class from an array
-            var letter = ui.draggable.attr('class').split(" ")[2].substr(6);
-            console.log(letter);
+            // var letter = ui.draggable.attr('class').split(" ")[2].substr(6);
+            //console.log(letter);
         },
+    });
 
-        out: function(event, ui) {
-            $(this).removeClass('occupiedSpace');
-            $(this).addClass('emptySpace');
-        }
+    // Buttons
+    $('#newHand').click(function () {
+        console.log('here are some fingers');
     });
 
     $('#submit').click(function () {
         generateHand();
     });
 
-    
     console.log(tilePile);
-
-    /*
-    var pos = $('#scrabbleBoard').position();
-    console.log(pos.top);
-    console.log(pos.left);
-    */
-
 });
 
 // Create the pile of tiles that will be taken from to regenerate the player's hand
@@ -109,7 +111,6 @@ function generatePile() {
 function generateHand() {
     // For each empty cell pick a random tile from the pile and change the cell's classes
     $('.emptyCell').each(function() {
-        console.log('test');
         var newTile = getTile();
         var newTileWidget = (document.createElement('div'));
         var attributes = 'ui-widget-content draggable letter' + newTile;
@@ -132,7 +133,6 @@ function getTile () {
     var tile = tilePile[index];
     tilePile.splice(index, 1);
     ScrabbleTiles[tile].number--;
-    console.log(ScrabbleTiles[tile].number);
     return tile;
 }
 
@@ -143,7 +143,7 @@ function getTile () {
  *  updated by JMH on November 21, 2015 at 10:27 AM
  *  updated by JMH on November 25, 2015 at 10:58 AM to add the blank tile
  *  updated by JMH on November 27, 2015 at 10:22 AM to add original-distribution
- *  updated by sejager on December 13th, 2024 at 08:01 PM to add urls to each tile.
+ *  updated by sejager on December 13th, 2024 at 08:01 PM to add urls to each tile and remove original-distribution.
  */
 
 
