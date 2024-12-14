@@ -1,3 +1,9 @@
+/*
+File: scrabble.css
+Created by sejager
+This is the .css page for a single line of scrabble game.
+*/
+
 body {
     min-width: 1229px;
 }
@@ -25,7 +31,7 @@ header {
     display: flex;
 }
 
-.boardTileImage {
+.boardSpaceImage {
     height: 74px;
     width: 74px;
     border: 1px solid black;
@@ -34,7 +40,7 @@ header {
 /* CSS Code for the area where the tiles the player can currently choose from are located. */
 
 #tileHandContainer {
-    width: 580px;
+    width: 550px;
     height: 110px;
     margin-left: auto;
     margin-right: auto;
@@ -43,12 +49,9 @@ header {
 
 #tileHolderTable {
     border-collapse: collapse;
-}
-
-#tileHolderRow {
     position: absolute;
     top: 5px;
-    left: -10px;
+    left: 12px;
 }
 
 .tileHolderCell {
@@ -57,7 +60,7 @@ header {
 }
 
 #tileHolder {
-    width: 580px;
+    width: 550px;
     height: 110px;
 }
 

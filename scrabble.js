@@ -1,6 +1,16 @@
+/*
+File: scrabble.js
+Created by sejager
+This is the .js page for a single line of scrabble game.
+*/
+
+
+
+// make sure classes are only added if successfully moved
+
+
 
 // Variables used to track the pile and hand
-var handTilesAmount = 0;
 var ScrabbleTiles = [];
 var tilePile = [];
 var allTiles = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"];
@@ -16,20 +26,40 @@ $(document).ready(function () {
         revert: 'invalid'
     });
 
+    // Make the tile holder 'cells' droppable surfaces
     $('.tileHolderCell').droppable( {
-        tolerance: 'intersect'
+
+        tolerance: 'intersect',
+
+        // What happens when a tile is dropped
+        drop: function(event, ui) {
+            // Snap the tile into the cell
+            var tilePos = $(this).position().left;
+            $(ui.draggable).css({'top' : '', 'left' : '', 'position' : 'absolute', 'z-index' : '1'});
+            $(this).append(ui.draggable);
+            // Change classes
+            $(this).addClass('occupiedCell');
+            $(this).removeClass('emptyCell');
+        },
+
+        // What happens when a tile is removed
+        out: function(event, ui) {
+            $(this).removeClass('occupiedCell');
+            $(this).addClass('emptyCell');
+        }
     })
 
-    // Make the board tiles droppable surfaces
-    $('.boardTile').droppable( {
+    // Make the board spaces droppable surfaces
+    $('.boardSpace').droppable( {
+
         tolerance: 'intersect',
+
         drop: function(event, ui) {
-            var tilePos = $(this).position().left;
             $(ui.draggable).css({'top' : $(this).position().top - 1, 'left' : $(this).position().left + 2, 'position' : 'absolute', 'z-index' : '1'});
             $(this).append(ui.draggable);
-
-
-
+            $(this).addClass('occupiedSpace');
+            $(this).removeClass('emptySpace');
+            // Check if it's a special board space
             if ($(this).is('.doubleLetter')) {
                 console.log('doubleLetter');
             }
@@ -43,6 +73,11 @@ $(document).ready(function () {
             // Thanks to https://stackoverflow.com/a/10343518 for getting specific class from an array
             var letter = ui.draggable.attr('class').split(" ")[2].substr(6);
             console.log(letter);
+        },
+
+        out: function(event, ui) {
+            $(this).removeClass('occupiedSpace');
+            $(this).addClass('emptySpace');
         }
     });
 
@@ -72,19 +107,19 @@ function generatePile() {
 
 // Generates enough tiles to have a complete hand (unless the pile becomes empty)
 function generateHand() {
-    //while (handTilesAmount < 7) {
-        if (tilePile.length == 0) {
-            alert('emptyPile');
-            return;
-        }
+    // For each empty cell pick a random tile from the pile and change the cell's classes
+    $('.emptyCell').each(function() {
+        console.log('test');
         var newTile = getTile();
         var newTileWidget = (document.createElement('div'));
         var attributes = 'ui-widget-content draggable letter' + newTile;
         newTileWidget.setAttribute('class', attributes);
         newTileWidget.innerHTML = '<img class="tiles" src="' + ScrabbleTiles[newTile].imageLink + '.">';
-        $('#tileHandContainer').append(newTileWidget);
-        handTilesAmount++;
-    //}
+        $(this).append(newTileWidget);
+        $(this).addClass('occupiedCell');
+        $(this).removeClass('emptyCell');
+    });
+
     $('.draggable').draggable( {
         revert: 'invalid'
     });

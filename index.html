@@ -27,45 +27,54 @@ This is the HTML page for a single line of scrabble game.
     <!-- The scrabble 'board' is displayed here. -->
 
         <div id="scrabbleBoard">
-            <div id="tileOne" class="boardTile">
-                <img class="boardTileImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+            <div id="tileOne" class="boardSpace empty">
+                <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
             </div>
-            <div id="tileTwo" class="boardTile">
-                <img class="boardTileImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+            <div id="tileTwo" class="boardSpace empty">
+                <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
             </div>
-            <div id="tileThree" class="boardTile doubleWord">
-                <img class="boardTileImage" src="./graphics_data/Board_Tiles/Board_Tile_Double_Word.png">
+            <div id="tileThree" class="boardSpace doubleWord">
+                <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Double_Word.png">
             </div>
-            <div id="tileFour" class="boardTile">
-                <img class="boardTileImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+            <div id="tileFour" class="boardSpace empty">
+                <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
             </div>
-            <div id="tileFive" class="boardTile doubleLetter">
-                <img class="boardTileImage" src="./graphics_data/Board_Tiles/Board_Tile_Double_Letter.png">
+            <div id="tileFive" class="boardSpace doubleLetter">
+                <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Double_Letter.png">
             </div>
-            <div id="tileSix" class="boardTile">
-                <img class="boardTileImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+            <div id="tileSix" class="boardSpace empty">
+                <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
             </div>
-            <div id="tileSeven" class="boardTile">
-                <img class="boardTileImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+            <div id="tileSeven" class="boardSpace empty">
+                <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
             </div>
         </div>
 
     <!-- The players tiles are displayed here. -->
         <div id="tileHandContainer">
             <table id="tileHolderTable">
-                <tr id="tileHolderRow">
-                    <td class="tileHolderCell">
-                        <div class="ui-widget-content draggable letterB">
-                            <img class="tiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_B.jpg">
-                        </div>
+                <tr>
+                    <td>
+                        <div class="tileHolderCell emptyCell" id="tileHolderCellOne"></div>
                     </td>
-                    <td class="tileHolderCell" id="tileHolderCellOne"></td>
-                    <td class="tileHolderCell" id="tileHolderCellTwo"></td>
-                    <td class="tileHolderCell" id="tileHolderCellThree"></td>
-                    <td class="tileHolderCell" id="tileHolderCellFour"></td>
-                    <td class="tileHolderCell" id="tileHolderCellFive"></td>
-                    <td class="tileHolderCell" id="tileHolderCellSix"></td>
-                    <td class="tileHolderCell" id="tileHolderCellSeven"></td>
+                    <td>
+                        <div class="tileHolderCell emptyCell" id="tileHolderCellTwo"></div>
+                    </td>
+                    <td>
+                        <div class="tileHolderCell emptyCell" id="tileHolderCellThree"></div>
+                    </td>
+                    <td>
+                        <div class="tileHolderCell emptyCell" id="tileHolderCellFour"></div>
+                    </td>
+                    <td>
+                        <div class="tileHolderCell emptyCell" id="tileHolderCellFive"></div>
+                    </td>
+                    <td>
+                        <div class="tileHolderCell emptyCell" id="tileHolderCellSix"></div>
+                    </td>
+                    <td>
+                        <div class="tileHolderCell emptyCell" id="tileHolderCellSeven"></div>
+                    </td>
                 </tr>
             </table>
             <img id="tileHolder" src="./graphics_data/scrabble-tile-holder-406774_640.png">
