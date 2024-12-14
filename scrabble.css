@@ -45,9 +45,6 @@ header {
 }
 
 .ui-widget-content {
-    position: absolute;
-    top: 43px;
-    left: 30px;
     border: none !important;
 }
 
