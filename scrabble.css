@@ -4,10 +4,32 @@ Created by sejager
 This is the .css page for a single line of scrabble game.
 */
 
+/* Wallpaper from https://wallpaperaccess.com/wood-table */
+html {
+    background-image: url(./graphics_data/woodbackground.jpg);
+    background-size: cover;
+}
+
+#bg {
+    background-image: url(./graphics_data/woodbackground.jpg);
+    background-size: cover;
+}
+
+#pagewrapper {
+    position: relative;
+    background-color: rgba(255, 255, 255, .5);
+    width: 900px;
+    padding-top: 60px;
+    padding-bottom: 10px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
 header {
     width: 80%;
     min-width: 600px;
-    margin-top: 60px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -76,7 +98,40 @@ header {
     border-radius: 6px;
 }
 
+/* Information */
+
+#tilesInfo, #wordPointsInfo {
+    width: 545px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: right;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 15px;
+}
+
+#wordPointsInfo {
+    margin-top: 8px;
+}
+
+#totalPointsInfo {
+    text-align: center;
+    margin: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+
+/* Buttons */
 #buttonGroup {
     margin-top: 20px;
     text-align: center;
+}
+
+/* Modals */
+.modal-title {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#scoresModalBody {
+    font-size: 20px;
 }

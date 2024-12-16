@@ -14,94 +14,122 @@ This is the HTML page for a single line of scrabble game.
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
-    <header>
-        <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_S.jpg">
-        <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_C.jpg">
-        <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_R.jpg">
-        <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_A.jpg">
-        <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_B.jpg">
-        <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_B.jpg">
-        <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_L.jpg">
-        <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_E.jpg">
-    </header>
-    
-    <!-- The scrabble 'board' is displayed here. -->
-        <div id="scrabbleBoard">
-            <div id="tileOne" class="boardSpace emptySpace">
-                <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
-            </div>
-            <div id="tileTwo" class="boardSpace emptySpace">
-                <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
-            </div>
-            <div id="tileThree" class="boardSpace doubleWord">
-                <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Double_Word.png">
-            </div>
-            <div id="tileFour" class="boardSpace emptySpace">
-                <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
-            </div>
-            <div id="tileFive" class="boardSpace doubleLetter">
-                <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Double_Letter.png">
-            </div>
-            <div id="tileSix" class="boardSpace emptySpace">
-                <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
-            </div>
-            <div id="tileSeven" class="boardSpace emptySpace">
-                <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
-            </div>
-        </div>
+    <div id="bg">
+        <div id="pagewrapper">
+            <header>
+                <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_S.jpg">
+                <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_C.jpg">
+                <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_R.jpg">
+                <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_A.jpg">
+                <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_B.jpg">
+                <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_B.jpg">
+                <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_L.jpg">
+                <img class="titleTiles" src="./graphics_data/Scrabble_Tiles/Scrabble_Tile_E.jpg">
+            </header>
 
-    <!-- The players tiles are displayed here. -->
-        <div id="tileHandContainer">
-            <table id="tileHolderTable">
-                <tr>
-                    <td>
-                        <div class="tileHolderCell emptyCell" id="tileHolderCellOne"></div>
-                    </td>
-                    <td>
-                        <div class="tileHolderCell emptyCell" id="tileHolderCellTwo"></div>
-                    </td>
-                    <td>
-                        <div class="tileHolderCell emptyCell" id="tileHolderCellThree"></div>
-                    </td>
-                    <td>
-                        <div class="tileHolderCell emptyCell" id="tileHolderCellFour"></div>
-                    </td>
-                    <td>
-                        <div class="tileHolderCell emptyCell" id="tileHolderCellFive"></div>
-                    </td>
-                    <td>
-                        <div class="tileHolderCell emptyCell" id="tileHolderCellSix"></div>
-                    </td>
-                    <td>
-                        <div class="tileHolderCell emptyCell" id="tileHolderCellSeven"></div>
-                    </td>
-                </tr>
-            </table>
-            <img id="tileHolder" src="./graphics_data/scrabble-tile-holder-406774_640.png">
-        </div>
+            <!-- The scrabble 'board' is displayed here. -->
+                <div id="scrabbleBoard">
+                    <div class="boardSpace">
+                        <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+                    </div>
+                    <div class="boardSpace">
+                        <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+                    </div>
+                    <div class="boardSpace doubleLetter">
+                        <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Double_Letter.png">
+                    </div>
+                    <div class="boardSpace">
+                        <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+                    </div>
+                    <div class="boardSpace">
+                        <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+                    </div>
+                    <div class="boardSpace doubleWord">
+                        <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Double_Word.png">
+                    </div>
+                    <div class="boardSpace">
+                        <img class="boardSpaceImage" src="./graphics_data/Board_Tiles/Board_Tile_Blank.png">
+                    </div>
+                </div>
 
-    <!-- Buttons displayed here 
-     Thanks to https://getbootstrap.com/docs/5.3/components/buttons/ -->
-    <div id="buttonGroup">
-        <button id="submit" class="btn btn-secondary">Submit</button>
-        <button id="newHand" class="btn btn-secondary">New Hand</button>
-        <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-            data-bs-target="#exampleModal">Rules</button>
-    </div>
-  
-  <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="rulesModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="rulesModalLabel">Rules</h1>
+            <!-- The players tiles are displayed here. -->
+                <div id="tileHandContainer">
+                    <table id="tileHolderTable">
+                        <tr>
+                            <td>
+                                <div class="tileHolderCell"></div>
+                            </td>
+                            <td>
+                                <div class="tileHolderCell"></div>
+                            </td>
+                            <td>
+                                <div class="tileHolderCell"></div>
+                            </td>
+                            <td>
+                                <div class="tileHolderCell"></div>
+                            </td>
+                            <td>
+                                <div class="tileHolderCell"></div>
+                            </td>
+                            <td>
+                                <div class="tileHolderCell"></div>
+                            </td>
+                            <td>
+                                <div class="tileHolderCell"></div>
+                            </td>
+                        </tr>
+                    </table>
+                    <img id="tileHolder" src="./graphics_data/scrabble-tile-holder-406774_640.png">
                 </div>
-                <div class="modal-body">
-                    ...
+                <div id="wordPointsInfo"></div>
+                <div id="tilesInfo"></div>
+
+            <!-- Buttons displayed here 
+            Thanks to https://getbootstrap.com/docs/5.3/components/buttons/ -->
+            <div id="buttonGroup">
+                <button id="submit" class="btn btn-secondary">Submit</button>
+                <button id="newHand" class="btn btn-secondary">New Hand</button>
+                <button id="endGame" class="btn btn-secondary">End Game</button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                    data-bs-target="#rulesModal">Rules</button>
+                <button id="highScores" class="btn btn-secondary" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">High Scores</button>
+            </div>
+        
+            <!-- Game Info -->
+            <div id="totalPointsInfo"></div>
+
+            <!-- Rules Modal -->
+            <div class="modal fade" id="rulesModal" tabindex="-1" aria-labelledby="rulesModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="rulesModalLabel">Rules</h1>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+
+            <!-- High Score Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="scoresModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="scoresModalLabel">High Scores</h1>
+                        </div>
+                        <div id="scoresModalBody" class="modal-body"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
