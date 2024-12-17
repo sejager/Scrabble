@@ -90,10 +90,6 @@ $(document).ready(function () {
         endGame();
     });
 
-    $('#selectLet').click(function () {
-        selectLetter();
-    });
-    
     // Checks if input is valid when asked to select a letter
     $('#letterConfirmation').click(function () {
         if ($('#letterSelection').valid() == true) {
