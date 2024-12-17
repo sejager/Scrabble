@@ -154,3 +154,12 @@ button {
 #scoresModalBody {
     font-size: 20px;
 }
+
+input {
+    text-align: center;
+    width: 30px;
+}
+
+.error {
+    color: red;
+}
