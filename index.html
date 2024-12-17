@@ -101,7 +101,7 @@ This is the HTML page for a single line of scrabble game.
                 <button id="highScores" class="btn btn-secondary" data-bs-toggle="modal"
                 data-bs-target="#highScoreModal">High Scores</button>
             </div>
-
+            <button id="selectLet" class="btn btn-primary">select letter</button>
             <!-- Game Info -->
             <div id="totalPointsInfo"></div>
 
@@ -111,19 +111,17 @@ This is the HTML page for a single line of scrabble game.
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="rulesModalLabel">How To</h1>
+                            <h1 class="modal-title fs-5" id="rulesModalLabel">Rules</h1>
                         </div>
                         <div class="modal-body">
                             <p>
-                                IF POP-UPS ARE DISABLED THE GAME MAY NOT FUNCTION PROPERLY!<br>
                                 Drag the tiles from your hand onto the board to create words.<br><br>
                                 The tiles must start from the first board space and cannot<br>have any gaps.<br><br>
                                 Hitting submit will submit that word.<br><br>
                                 You will be awarded points based on the value of the letter<br>and any board space bonuses.<br><br>
                                 You will receive as many tiles to your hand as you have played.<br><br>
                                 If at any time you feel you cannot make a word, you can select<br>New Hand to replace all the tiles
-                                currently in your hand (those<br>placed on the board will be unaffected) at the cost of one point
-                                per tile.<br><br>
+                                currently in your hand (those<br>placed on the board will be unaffected), at the cost of one point per tile.<br><br>
                                 If you want to quit or you can no longer create any new words<br>because you ran out of tiles,
                                 hitting End Game will submit your<br>score to the leaderboard.
                             </p>
@@ -164,11 +162,36 @@ This is the HTML page for a single line of scrabble game.
                     </div>
                 </div>
             </div>
+
+            <!-- Letter Select -->
+            <div class="modal fade" id="letterSelectModal" tabindex="-1" aria-labelledby="letterSelectModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="letterSelectModalLabel">Letter Selection</h1>
+                        </div>
+                        <div id="letterSelectModalBody" class="modal-body">
+                            <form action="javascript:void(0);" id="letterSelection">
+                                <label for="selectedLetterOne">Select which letter you want the first letter to be:</label><br>
+                                <input type="text" id="selectedLetterOne" name="selectedLetterOne" value="A">
+                                <label for="selectedLetterTwo">Select which letter you want the second tile to be (if applicable):</label><br>
+                                <input type="text" id="selectedLetterTwo" name="selectedLetterTwo" disabled="disabled" value="A">
+                            </form>
+                            Click close after hitting Select Letter.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="letterConfirmation" class="btn btn-danger">Select Letter(s)</button>
+                            <button type="button" id="closeButton" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
     <script src="https://releases.jquery.com/git/ui/jquery-ui-git.js"></script>
     <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
     <script src="scrabble.js"></script>

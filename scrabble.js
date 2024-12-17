@@ -11,7 +11,7 @@ var tilePile = [];
 var allTiles = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"];
 var capitalLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var lowercaseLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-var letter = '';
+var letterArray = [];
 
 // Set up the initial game
 setScrabbleTiles();
@@ -75,6 +75,8 @@ $(document).ready(function () {
         },
     });
 
+    validateLetter();
+
     // Buttons
     $('#newHand').click(function () {
         newHand();
@@ -87,6 +89,22 @@ $(document).ready(function () {
     $('#endGameConfirmation').click(function () {
         endGame();
     });
+
+    $('#selectLet').click(function () {
+        selectLetter();
+    });
+    
+    // Checks if input is valid when asked to select a letter
+    $('#letterConfirmation').click(function () {
+        if ($('#letterSelection').valid() == true) {
+            console.log('hey');
+            selectedLetter();
+        }
+    });
+
+    $('#closeButton').click(function () {
+        $('#selectedLetterTwo').attr('disabled', 'true');
+    })
 });
 
 // Create the pile of tiles that will be taken from to regenerate the player's hand
@@ -153,8 +171,7 @@ function checkSubmission() {
         return;
     }
     // Get the letters and their values and apply any bonuses and then clear the board and refill the hand
-    getWord();
-    
+    checkForBlanks();
 }
 
 // Simply updates the points
@@ -163,22 +180,35 @@ function updatePoints(wordPoints) {
     $('#totalPointsInfo').text('Total Points: ' + totalPoints);
 }
 
-// Puts together the word and calculates the points
-function getWord() {
-    var hasDoubleWord = false;
-    var wordPoints = 0;
-    var blankFilled = true;
+function checkForBlanks() {
+    letterArray = [];
+    blankNumber = 0;
     $('.boardSpace').each(function() {
         if($(this).hasClass('ui-droppable-disabled')) {
-            letter = '';
-            // Check if the tile is a blank tile, if so make the player pick a letter
+            // Check if the tile is a blank tile
             if($(this).find('div.draggable').hasClass('letter_')) {
-                selectLetter();
-                // exit the function if no letter was entered
-                if (letter == '') {
-                    blankFilled = false;
-                    return;
-                }
+                blankNumber++;
+            }
+        }
+    });
+    // Make the player pick a letter for each blank
+    if (blankNumber > 0) {
+        selectLetter(blankNumber);
+    }
+}
+
+// Puts together the word and calculates the points
+function getWord() {
+    var blankNumber = 0;
+    var hasDoubleWord = false;
+    var wordPoints = 0;
+    var letter = '';
+    $('.boardSpace').each(function() {
+        if($(this).hasClass('ui-droppable-disabled')) {
+            // Check if the tile is a blank tile, if so, get the chosen letters from the array
+            if($(this).find('div.draggable').hasClass('letter_')) {
+                letter = letterArray[blankNumber];
+                blankNumber++;
             }
             // Else get what letter has just been dropped by extracting the class and removing the 'letter' part of the class name
             // Thanks to https://stackoverflow.com/a/52454460 for getting attr of dropped object
@@ -191,26 +221,63 @@ function getWord() {
             if ($(this).hasClass('doubleWord')) { hasDoubleWord = true; }
         }
     });
-    if (blankFilled == false) {
-        return;
-    }
     if (hasDoubleWord) { totalPoints += wordPoints * 2; }
     else { totalPoints += wordPoints; }
-    console.log('shouldntprint');
+
     updatePoints(wordPoints);
     clearBoard();
     generateHand();
 }
 
-// Prompts the player to pick a letter
-// If no valid letter is input simply exit
-function selectLetter() {
-        var input = prompt("Please enter a letter:", "");
-        if (capitalLetters.includes(input)) {
-            letter = input;
-        } else if (lowercaseLetters.includes(letter)) {
-            letter = capitalLetters[lowercaseLetters.indexOf(letter)];
+// Opens the select letter modal and enables second input field if there are two blank tiles
+function selectLetter(blankNumber = 0) {
+    // Thanks to https://www.geeksforgeeks.org/bootstrap-5-modal-via-javascript
+    if (blankNumber == 2) {
+        $('#selectedLetterTwo').removeAttr('disabled');
+    }
+    var selectModal = new bootstrap.Modal(document.getElementById('letterSelectModal'));
+    selectModal.show();
+}
+
+// Push the selected letter(s) to an array
+function selectedLetter() {
+    var letter = $('#selectedLetterOne').val();
+    if (lowercaseLetters.includes(letter)) {
+        letterArray.push(capitalLetters[lowercaseLetters.indexOf(letter)]);
+    }
+    else {
+        letterArray.push(letter);
+    }
+    if (!$('#selectedLetterTwo').attr('disabled')) {
+        letter = $('#selectedLetterTwo').val();
+        if (lowercaseLetters.includes(letter)) {
+            letterArray.push(capitalLetters[lowercaseLetters.indexOf(letter)]);
         }
+        else {
+            letterArray.push(letter);
+        }
+    }
+    getWord();
+}
+
+// Checks that the user input a letter
+function validateLetter() {
+    jQuery.validator.addMethod('isLetter', function (value, element, param) {
+        return capitalLetters.includes(value) || lowercaseLetters.includes(value);
+    }, jQuery.validator.format('You must input a single letter.'));
+
+    $('#letterSelection').validate({
+        // Thanks to https://stackoverflow.com/a/27430858
+        errorElement: 'div',
+        rules: {
+            selectedLetterOne: {
+                isLetter: true
+            },
+            selectedLetterTwo: {
+                isLetter: true
+            }
+        }
+    });
 }
 
 // On a successful submission the tiles are removed from the board
@@ -248,8 +315,8 @@ function newHand() {
             totalPoints--;
         }
     });
-    generateHand();
     $('#totalPointsInfo').text('Total Points: ' + totalPoints);
+    generateHand();
 }
 
 // List the high scores in the modal while also trimming the list to be only the top 10
@@ -286,7 +353,7 @@ function resetGame() {
 
 // Ends the game and starts a new one, if there are points they will be recorded
 function endGame() {
-    if (totalPoints > 0) {
+    if (totalPoints != 0) {
         var allScores = localStorage.getItem('scores');
         if (allScores.length == 0) { allScores = totalPoints; }
         else { allScores += '@' + totalPoints; }
