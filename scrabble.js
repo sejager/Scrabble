@@ -9,6 +9,9 @@ var totalPoints = 0;
 var ScrabbleTiles = [];
 var tilePile = [];
 var allTiles = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"];
+var capitalLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+var lowercaseLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+var letter = '';
 
 // Set up the initial game
 setScrabbleTiles();
@@ -20,7 +23,6 @@ updatePoints(0);
 setHighScores();
 
 $(document).ready(function () {
-
 
     // Make tiles draggable and return to origin if not placed on a droppable surface
     $('.draggable').draggable( { revert: 'invalid' } );
@@ -44,7 +46,7 @@ $(document).ready(function () {
             // Disable dropping
             $(this).droppable('option', 'disabled', true);
         }
-    })
+    });
 
     // Make the board spaces droppable surfaces, similar to the above code
     $('.boardSpace').droppable( {
@@ -75,20 +77,16 @@ $(document).ready(function () {
 
     // Buttons
     $('#newHand').click(function () {
-        console.log('here are some fingers');
+        newHand();
     });
 
     $('#submit').click(function () {
         checkSubmission();
     });
 
-    $('#endGame').click(function () {
+    $('#endGameConfirmation').click(function () {
         endGame();
     });
-
-    console.log(tilePile);
-
-    
 });
 
 // Create the pile of tiles that will be taken from to regenerate the player's hand
@@ -154,11 +152,9 @@ function checkSubmission() {
         alert('There cannot be any gaps in the submission.');
         return;
     }
-    // Get the letters and their values and apply any bonuses
+    // Get the letters and their values and apply any bonuses and then clear the board and refill the hand
     getWord();
-    // Then clear the board and refill the hand
-    clearBoard();
-    generateHand();
+    
 }
 
 // Simply updates the points
@@ -171,21 +167,50 @@ function updatePoints(wordPoints) {
 function getWord() {
     var hasDoubleWord = false;
     var wordPoints = 0;
+    var blankFilled = true;
     $('.boardSpace').each(function() {
         if($(this).hasClass('ui-droppable-disabled')) {
-                // Get what letter has just been dropped by extracting the class and removing the 'letter' part of the class name
-                // Thanks to https://stackoverflow.com/a/52454460 for getting attr of dropped object
-                // Thanks to https://stackoverflow.com/a/10343518 for getting specific class from an array
-            var letter = $(this).find('div.draggable').attr('class').split(" ")[2].substr(6);
+            letter = '';
+            // Check if the tile is a blank tile, if so make the player pick a letter
+            if($(this).find('div.draggable').hasClass('letter_')) {
+                selectLetter();
+                // exit the function if no letter was entered
+                if (letter == '') {
+                    blankFilled = false;
+                    return;
+                }
+            }
+            // Else get what letter has just been dropped by extracting the class and removing the 'letter' part of the class name
+            // Thanks to https://stackoverflow.com/a/52454460 for getting attr of dropped object
+            // Thanks to https://stackoverflow.com/a/10343518 for getting specific class from an array
+            else { 
+                letter = $(this).find('div.draggable').attr('class').split(" ")[2].substr(6);
+            } 
             if ($(this).hasClass('doubleLetter')) { wordPoints += ScrabbleTiles[letter].value * 2; }
             else { wordPoints += ScrabbleTiles[letter].value; }
             if ($(this).hasClass('doubleWord')) { hasDoubleWord = true; }
         }
     });
+    if (blankFilled == false) {
+        return;
+    }
     if (hasDoubleWord) { totalPoints += wordPoints * 2; }
     else { totalPoints += wordPoints; }
-
+    console.log('shouldntprint');
     updatePoints(wordPoints);
+    clearBoard();
+    generateHand();
+}
+
+// Prompts the player to pick a letter
+// If no valid letter is input simply exit
+function selectLetter() {
+        var input = prompt("Please enter a letter:", "");
+        if (capitalLetters.includes(input)) {
+            letter = input;
+        } else if (lowercaseLetters.includes(letter)) {
+            letter = capitalLetters[lowercaseLetters.indexOf(letter)];
+        }
 }
 
 // On a successful submission the tiles are removed from the board
@@ -195,13 +220,36 @@ function clearBoard() {
             // Get the tile and enable dropping
             $(this).children('.draggable').remove();
             $(this).droppable( { disabled: false } );
-            console.log('oops');
         }
     });
 }
 
+// Clear all tiles from the hand when ending the game
 function clearHand() {
+    $('.tileHolderCell').each(function() {
+        if($(this).hasClass('ui-droppable-disabled')) {
+            // Get the tile and enable dropping
+            $(this).children('.draggable').remove();
+            $(this).droppable( { disabled: false } );
+        }
+    });
+}
 
+// Place all the tiles in the holder back into the pile and get new ones
+function newHand() {
+    $('.tileHolderCell').each(function() {
+        if($(this).hasClass('ui-droppable-disabled')) {
+            // Get the letters from the tiles and push those back onto the pile
+            var letter = $(this).find('div.draggable').attr('class').split(" ")[2].substr(6);
+            tilePile.push(letter);
+            // Make the cells draggable again after removing the tiles
+            $(this).children('.draggable').remove();
+            $(this).droppable( { disabled: false } );
+            totalPoints--;
+        }
+    });
+    generateHand();
+    $('#totalPointsInfo').text('Total Points: ' + totalPoints);
 }
 
 // List the high scores in the modal while also trimming the list to be only the top 10
@@ -214,7 +262,6 @@ function setHighScores() {
     var scoresArray = allScores.split('@').sort(function(a, b){return b-a});
     allScores = '';
     localStorage.setItem('scores', '');
-    console.log(scoresArray.length);
     for (let x = 0; x < 10 && x < scoresArray.length; x++) {
         allScores += scoresArray[x] + '@';
         document.getElementById('scoresModalBody').innerHTML += scoresArray[x] + '<br>';
@@ -237,15 +284,16 @@ function resetGame() {
     generateHand();
 }
 
+// Ends the game and starts a new one, if there are points they will be recorded
 function endGame() {
-    if (totalPoints != 0) {
+    if (totalPoints > 0) {
         var allScores = localStorage.getItem('scores');
         if (allScores.length == 0) { allScores = totalPoints; }
         else { allScores += '@' + totalPoints; }
         localStorage.setItem('scores', allScores);
         setHighScores();
-        resetGame();
     }
+    resetGame();
 }
 
 /*  Original File:  /~heines/91.461/91.461-2015-16f/461-assn/Scrabble_Pieces_AssociativeArray_Jesse.js

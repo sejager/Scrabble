@@ -106,7 +106,7 @@ header {
     margin-right: auto;
     text-align: right;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 #wordPointsInfo {
@@ -117,13 +117,32 @@ header {
     text-align: center;
     margin: 20px;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 20px;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 /* Buttons */
-#buttonGroup {
+#buttonGroupOne {
+    display: inline-block;
     margin-top: 20px;
-    text-align: center;
+    margin-right: 30px;
+}
+
+#buttonGroupTwo {
+    display: inline-block;
+    margin-top: 20px;
+    margin-right: 30px;
+}
+
+button {
+    margin-left: 30px !important;
+    font-size: 20px !important;
+}
+
+#submit {
+    font-size: 30px !important;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Modals */
