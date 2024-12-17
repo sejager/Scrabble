@@ -162,6 +162,30 @@ This is the HTML page for a single line of scrabble game.
                     </div>
                 </div>
             </div>
+
+            <!-- Letter Select -->
+            <div class="modal fade" id="letterSelectModal" tabindex="-1" aria-labelledby="letterSelectModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="letterSelectModalLabel">Letter Selection</h1>
+                        </div>
+                        <div id="letterSelectModalBody" class="modal-body">
+                            <form action="javascript:void(0);" id="letterSelection">
+                                <label for="selectedLetterOne">Select which letter you want the first letter to be:</label><br>
+                                <input type="text" id="selectedLetterOne" name="selectedLetterOne" value="A">
+                                <label for="selectedLetterTwo">Select which letter you want the second tile to be (if applicable):</label><br>
+                                <input type="text" id="selectedLetterTwo" name="selectedLetterTwo" disabled="disabled" value="A">
+                            </form>
+                            Click close after hitting Select Letter.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="letterConfirmation" class="btn btn-danger">Select Letter(s)</button>
+                            <button type="button" id="closeButton" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

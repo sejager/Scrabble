@@ -188,9 +188,9 @@ function checkForBlanks() {
         }
     });
     // Make the player pick a letter for each blank
-    if (blankNumber > 0) {
-        selectLetter(blankNumber);
-    }
+    if (blankNumber > 0) { selectLetter(blankNumber); }
+    // Or just get the word if there are none
+    else { getWord(); }
 }
 
 // Puts together the word and calculates the points
