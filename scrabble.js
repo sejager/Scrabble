@@ -322,7 +322,7 @@ function setHighScores() {
     var allScores = localStorage.getItem('scores');
     // Split up the string into an array and sort the high scores
     // Thanks to https://www.w3schools.com/jsref/jsref_sort.asp
-    if (allScores != null) {
+    if (allsScores != null) {
         var scoresArray = allScores.split('@').sort(function(a, b){return b-a});
         allScores = '';
         localStorage.setItem('scores', '');
@@ -353,7 +353,7 @@ function resetGame() {
 function endGame() {
     if (totalPoints != 0) {
         var allScores = localStorage.getItem('scores');
-        if (allScores.length == 0) { allScores = totalPoints; }
+        if (allScores == null) { allScores = totalPoints; }
         else { allScores += '@' + totalPoints; }
         localStorage.setItem('scores', allScores);
         setHighScores();
