@@ -126,7 +126,7 @@ function generateHand() {
             var newTileWidget = (document.createElement('div'));
             var attributes = 'ui-widget-content draggable letter' + newTile;
             newTileWidget.setAttribute('class', attributes);
-            newTileWidget.innerHTML = '<img class="tiles" src="' + ScrabbleTiles[newTile].imageLink + '.">';
+            newTileWidget.innerHTML = '<img class="tiles" src="' + ScrabbleTiles[newTile].imageLink + '">';
             $(this).append(newTileWidget);
             $(this).addClass('ui-droppable-disabled');
             $(this).droppable( { disabled: true } );
