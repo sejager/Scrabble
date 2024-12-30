@@ -322,7 +322,7 @@ function setHighScores() {
     var allScores = localStorage.getItem('scores');
     // Split up the string into an array and sort the high scores
     // Thanks to https://www.w3schools.com/jsref/jsref_sort.asp
-    if (allsScores != null) {
+    if (allScores != null) {
         var scoresArray = allScores.split('@').sort(function(a, b){return b-a});
         allScores = '';
         localStorage.setItem('scores', '');
