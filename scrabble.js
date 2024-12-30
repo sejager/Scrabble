@@ -322,19 +322,21 @@ function setHighScores() {
     var allScores = localStorage.getItem('scores');
     // Split up the string into an array and sort the high scores
     // Thanks to https://www.w3schools.com/jsref/jsref_sort.asp
-    var scoresArray = allScores.split('@').sort(function(a, b){return b-a});
-    allScores = '';
-    localStorage.setItem('scores', '');
-    for (let x = 0; x < 10 && x < scoresArray.length; x++) {
-        allScores += scoresArray[x] + '@';
-        document.getElementById('scoresModalBody').innerHTML += scoresArray[x] + '<br>';
+    if (allsScores != null) {
+        var scoresArray = allScores.split('@').sort(function(a, b){return b-a});
+        allScores = '';
+        localStorage.setItem('scores', '');
+        for (let x = 0; x < 10 && x < scoresArray.length; x++) {
+            allScores += scoresArray[x] + '@';
+            document.getElementById('scoresModalBody').innerHTML += scoresArray[x] + '<br>';
+        }
+        // Remove the final break
+        document.getElementById('scoresModalBody').innerHTML = document.getElementById('scoresModalBody').innerHTML.slice(0, -4);
+        // Remove the final space
+        allScores.slice(0,-1);
+        // Return the string of the sorted high scores to the storage
+        localStorage.setItem('scores', allScores.slice(0,-1));
     }
-    // Remove the final break
-    document.getElementById('scoresModalBody').innerHTML = document.getElementById('scoresModalBody').innerHTML.slice(0, -4);
-    // Remove the final space
-    allScores.slice(0,-1);
-    // Return the string of the sorted high scores to the storage
-    localStorage.setItem('scores', allScores.slice(0,-1));
 }
 
 function resetGame() {
